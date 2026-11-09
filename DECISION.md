@@ -103,16 +103,6 @@ I left the following parts of the project unfinished because of the short time:
 4. **Cross-session Slack conversation memory.** The database and versioned
    workflow state support this, but there is no Slack conversation-to-workflow
    mapping or message history.
-5. **Workflow/document API routes and final output registration.** Only health
-   routes exist. Generated files are on disk but are not yet registered as
-   workflow output documents.
-6. **Demo video.** The required video depends on the unfinished Slack path, so it
-   was not recorded.
-
-I also used a generic intake contract (objective, constraints, inputs, missing
-information) rather than a dedicated company/industry/budget/timeline/stakeholder
-schema. That is enough to drive the pipeline, but explicit client-profile fields
-would be the next improvement for more targeted retrieval.
 
 ## Next Steps
 
