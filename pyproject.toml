@@ -1,0 +1,60 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "proposal-agent"
+version = "0.1.0"
+description = "RAG-powered multi-agent document research and proposal generation system"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "alembic>=1.13,<2.0",
+    "chromadb>=1.0,<2.0",
+    "fastapi>=0.115,<1.0",
+    "httpx>=0.27,<1.0",
+    "numpy>=1.26,<2.0",
+    "pydantic-settings>=2.4,<3.0",
+    "pypdf>=5.0,<8.0",
+    "python-docx>=1.1,<2.0",
+    "sentence-transformers>=3.0,<4.0",
+    "sqlalchemy>=2.0,<3.0",
+    "transformers>=4.41,<5.0",
+    "uvicorn[standard]>=0.30,<1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "mypy>=1.11,<2.0",
+    "pytest>=8.2,<9.0",
+    "ruff>=0.6,<1.0",
+]
+
+[tool.setuptools.packages.find]
+include = ["app*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --strict-markers"
+markers = [
+    "unit: fast isolated tests",
+    "integration: tests that exercise the application through its public interfaces",
+    "embedding: tests that load a real embedding model (opt in with RUN_EMBEDDING_TESTS=1)",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "ASYNC"]
+
+[tool.mypy]
+python_version = "3.11"
+plugins = ["pydantic.mypy"]
+strict = true
+warn_unreachable = true
+
+[[tool.mypy.overrides]]
+module = "tests.*"
+disallow_untyped_defs = false
